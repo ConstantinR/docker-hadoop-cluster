@@ -41,9 +41,13 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # download native support
 RUN mkdir -p /tmp/native
-RUN curl -Ls http://dl.bintray.com/sequenceiq/sequenceiq-bin/hadoop-native-64-2.7.0.tar | tar -x -C /tmp/native
+#RUN curl -Ls http://dl.bintray.com/sequenceiq/sequenceiq-bin/hadoop-native-64-2.7.0.tar | tar -x -#C /tmp/native
 
-ENV HADOOP_VERSION=3.0.0-alpha4-SNAPSHOT
+RUN curl -Ls https://bintray.com/sequenceiq/sequenceiq-bin/download_file?file_path=hadoop-native-64-2.7.0.tar | tar -x -C /tmp/native
+
+
+#ENV HADOOP_VERSION=3.0.0-alpha4-SNAPSHOT
+ENV HADOOP_VERSION=3.0.0-alpha3
 ADD hadoop-${HADOOP_VERSION}.tar.gz /usr/local/
 WORKDIR /usr/local
 RUN ln -s /usr/local/hadoop-${HADOOP_VERSION} /usr/local/hadoop
